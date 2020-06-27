@@ -7,13 +7,13 @@ $(function() {
     function updateTime() {
         var dateEl = $("#currentDay");
         var now = moment();
-        var formattedDate = now.format("dddd, MMMM Do, YYYY h:mm:ss a");
+        var formattedDate = now.format("dddd, MMMM Do, YYYY H:mm:ss a");
         dateEl.text(formattedDate);
     }
 
 });
 var rows = $(".row");
-var currentHour = parseInt(moment().format('h'));
+var currentHour = parseInt(moment().format('H:mm:ss a'));
 
 Array.from(rows).forEach(row => {
     var
@@ -26,9 +26,9 @@ Array.from(rows).forEach(row => {
 
         if (currentHour === rowHour) {
             setColor(row, "lightgrey");
-        } else if ((currentHour < rowHour) && (currentHour > rowHour - 24)) {
+        } else if ((currentHour < rowHour) && (currentHour < rowHour + 24)) {
             setColor(row, "lightgreen");
-        } else if ((currentHour > rowHour) && (currentHour < rowHour + 24)) {
+        } else if ((currentHour > rowHour) && (currentHour > rowHour - 24)) {
             setColor(row, "pink");
         }
     }
